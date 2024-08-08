@@ -142,7 +142,7 @@ echo ********* PostBuild Events End *********</PostBuildEvent>
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Folder Include="Commands\" />
+	  <Folder Include="Forms\" />
 	</ItemGroup>
   
 </Project>
