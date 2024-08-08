@@ -4,7 +4,7 @@
     <Text>LifestyleDesign_r24 - Delete Revisions</Text>
     <Description>Some description</Description>
     <Assembly>LifestyleDesign_r24\LifestyleDesign_r24.dll</Assembly>
-    <FullClassName>LifestyleDesign_r24.cmdDeleteRevisions</FullClassName>
+    <FullClassName>LifestyleDesign_r24.Commands.cmdDeleteRevisions</FullClassName>
     <ClientId>6d299bbe-eba8-48dc-89b9-ebf688020f82</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
@@ -13,7 +13,7 @@
     <Text>LifestyleDesign_r24 - Command 2</Text>
     <Description>Some description</Description>
     <Assembly>LifestyleDesign_r24\LifestyleDesign_r24.dll</Assembly>
-    <FullClassName>LifestyleDesign_r24.Command2</FullClassName>
+    <FullClassName>LifestyleDesign_r24.Commands.Command2</FullClassName>
     <ClientId>cb1a3772-4595-4529-9ae2-4c0f56e35916</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
