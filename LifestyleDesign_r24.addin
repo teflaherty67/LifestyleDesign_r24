@@ -13,7 +13,7 @@
     <Text>LifestyleDesign_r24 - Mirror Project</Text>
     <Description>Some description</Description>
     <Assembly>LifestyleDesign_r24\LifestyleDesign_r24.dll</Assembly>
-    <FullClassName>LifestyleDesign_r24.cmdMirrorProject</FullClassName>
+    <FullClassName>LifestyleDesign_r24.cmdRevitMirror</FullClassName>
     <ClientId>cb1a3772-4595-4529-9ae2-4c0f56e35916</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
