@@ -1,4 +1,4 @@
-﻿namespace LifestyleDesign_r24.Commands
+﻿namespace LifestyleDesign_r24
 {
     [Transaction(TransactionMode.Manual)]
     public class Command2 : IExternalCommand

@@ -1,7 +1,7 @@
-﻿namespace LifestyleDesign_r24.Commands
+﻿namespace LifestyleDesign_r24
 {
     [Transaction(TransactionMode.Manual)]
-    public class Command1 : IExternalCommand
+    public class cmdRevitMirror : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -11,7 +11,11 @@
             // this is a variable for the current Revit model
             Document doc = uiapp.ActiveUIDocument.Document;
 
-            // Your code goes here
+            // get Revit Command Id for Mirror Project
+            RevitCommandId commandId = RevitCommandId.LookupPostableCommandId(PostableCommand.MirrorProject);
+
+            // run the command using PostCommand
+            uiapp.PostCommand(commandId);
 
             return Result.Succeeded;
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LifestyleDesign_r24.Commands
+namespace LifestyleDesign_r24
 {
     [Transaction(TransactionMode.Manual)]
     public class cmdDeleteRevisions : IExternalCommand
