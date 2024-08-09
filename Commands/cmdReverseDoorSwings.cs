@@ -13,6 +13,9 @@ namespace LifestyleDesign_r24
             // this is a variable for the current Revit model
             Document doc = uiapp.ActiveUIDocument.Document;
 
+            // this is a variable for the current Revit model in the UI
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+
             // set the active view to the Door Schedule
             View curView;
             curView = Utils.GetScheduleByName(doc, "Door Schedule");
@@ -105,7 +108,7 @@ namespace LifestyleDesign_r24
             // use this method to define the properties for this command in the Revit ribbon
             string buttonInternalName = "btnCommand1";
             string buttonTitle = "Button 1";
-            string? methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+            string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
             if (methodBase == null)
             {

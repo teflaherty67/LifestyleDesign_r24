@@ -9,5 +9,7 @@ global using System.Reflection;
 global using Color = Autodesk.Revit.DB.Color;
 global using View = Autodesk.Revit.DB.View;
 global using TaskDialog = Autodesk.Revit.UI.TaskDialog;
+global using Icon = Autodesk.Revit.UI.TaskDialogIcon;
 global using Forms = System.Windows;
+global using Controls = System.Windows.Controls;
 

@@ -13,6 +13,9 @@ namespace LifestyleDesign_r24
             // this is a variable for the current Revit model
             Document curDoc = uiapp.ActiveUIDocument.Document;
 
+            // this is a variable for the current Revit model in the UI
+            UIDocument uidoc = uiapp.ActiveUIDocument;
+
             // open form
             frmElevDesignation curForm = new frmElevDesignation()
             {
@@ -103,7 +106,7 @@ namespace LifestyleDesign_r24
                         if (countView > 0)
                         {
                             TaskDialog tdDupViews = new TaskDialog("Error");
-                            tdDupViews.MainIcon = TaskDialogIcon.TaskDialogIconInformation;
+                            tdDupViews.MainIcon = Icon.TaskDialogIconInformation;
                             tdDupViews.Title = "Duplicate View Names";
                             tdDupViews.TitleAutoPrefix = false;
                             tdDupViews.MainContent = "The views already exist";
@@ -164,7 +167,7 @@ namespace LifestyleDesign_r24
                         if (countSheets > 0)
                         {
                             TaskDialog tdDupSheets = new TaskDialog("Error");
-                            tdDupSheets.MainIcon = TaskDialogIcon.TaskDialogIconInformation;
+                            tdDupSheets.MainIcon = Icon.TaskDialogIconInformation;
                             tdDupSheets.Title = "Duplicate Sheet Names";
                             tdDupSheets.TitleAutoPrefix = false;
                             tdDupSheets.MainContent = "The sheets already exist";
@@ -353,7 +356,7 @@ namespace LifestyleDesign_r24
 
                 // alert the user
                 TaskDialog tdSuccess = new TaskDialog("Complete");
-                tdSuccess.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+                tdSuccess.MainIcon = Icon.TaskDialogIconWarning;
                 tdSuccess.Title = "Complete";
                 tdSuccess.TitleAutoPrefix = false;
                 tdSuccess.MainContent = "Changed Elevation " + curElev + " to Elevation " + newElev;
@@ -367,7 +370,7 @@ namespace LifestyleDesign_r24
             else if (curElevList.Count == 0)
             {
                 TaskDialog tdCurSchedError = new TaskDialog("Error");
-                tdCurSchedError.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+                tdCurSchedError.MainIcon = Icon.TaskDialogIconWarning;
                 tdCurSchedError.Title = "Replace Elevation Designation";
                 tdCurSchedError.TitleAutoPrefix = false;
                 tdCurSchedError.MainContent = "The schedules for the current elevation do not follow the proper naming convention; " +
@@ -381,7 +384,7 @@ namespace LifestyleDesign_r24
             {
                 // if the schedules don't exist, alert the user & exit
                 TaskDialog tdNewSchedError = new TaskDialog("Error");
-                tdNewSchedError.MainIcon = TaskDialogIcon.TaskDialogIconWarning;
+                tdNewSchedError.MainIcon = Icon.TaskDialogIconWarning;
                 tdNewSchedError.Title = "Replace Elevation Designation";
                 tdNewSchedError.TitleAutoPrefix = false;
                 tdNewSchedError.MainContent = "The schedules for the new elevation do not exist, or do not follow the proper naming convention; " +
@@ -399,7 +402,7 @@ namespace LifestyleDesign_r24
             // use this method to define the properties for this command in the Revit ribbon
             string buttonInternalName = "btnCommand1";
             string buttonTitle = "Button 1";
-            string? methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+            string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
             if (methodBase == null)
             {

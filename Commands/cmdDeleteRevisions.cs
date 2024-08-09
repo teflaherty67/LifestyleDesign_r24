@@ -68,7 +68,7 @@ namespace LifestyleDesign_r24
             // use this method to define the properties for this command in the Revit ribbon
             string buttonInternalName = "btnCommand1";
             string buttonTitle = "Button 1";
-            string? methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+            string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
             if (methodBase == null)
             {

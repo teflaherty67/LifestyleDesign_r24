@@ -46,7 +46,7 @@ namespace LifestyleDesign_r24
 
             // not then hide bottom combo boxes
 
-            CheckBox cBox = (CheckBox)sender;
+           Controls.CheckBox cBox = (Controls.CheckBox)sender;
 
             if (cBox.IsChecked == true) { tbkLeft2.IsEnabled = true; cbxLeft2.IsEnabled = true; tbkRight2.IsEnabled = true; cbxRight2.IsEnabled = true; }
             else { cbxLeft2.IsEnabled = false; cbxRight2.IsEnabled = false; tbkLeft2.IsEnabled = false; tbkRight2.IsEnabled = false; }
