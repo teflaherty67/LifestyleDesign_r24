@@ -3,7 +3,7 @@
 namespace LifestyleDesign_r24
 {
     [Transaction(TransactionMode.Manual)]
-    public class cmdReverseDoorSwings : IExternalCommand
+    public class Command2 : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -12,7 +12,6 @@ namespace LifestyleDesign_r24
 
             // this is a variable for the current Revit model
             Document doc = uiapp.ActiveUIDocument.Document;
-
             // set the active view to the Door Schedule
 
             View curView;
@@ -126,5 +125,5 @@ namespace LifestyleDesign_r24
             }
         }
     }
-
 }
+

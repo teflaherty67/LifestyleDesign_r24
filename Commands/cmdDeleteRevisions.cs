@@ -29,25 +29,20 @@ namespace LifestyleDesign_r24
             if (result == Forms.MessageBoxResult.OK)
             {
                 // start the transaction
-
                 using (Transaction t = new Transaction(doc))
                 {
                     t.Start("Delete Revisions");
 
                     // add a blank revision
-
                     Revision newRevision = Revision.Create(doc);
 
                     // get all the revisions in the project
-
                     IList<ElementId> revisions = Revision.GetAllRevisionIds(doc);
 
                     // remove the last revision from the list
-
                     revisions.RemoveAt(revisions.Count - 1);
 
                     // delete the remaining revisions
-
                     doc.Delete(revisions);
 
                     t.Commit();
@@ -65,9 +60,33 @@ namespace LifestyleDesign_r24
             else
             {
                 // exit the command
-
                 return Result.Failed;
+            }
+        }
+        internal static PushButtonData GetButtonData()
+        {
+            // use this method to define the properties for this command in the Revit ribbon
+            string buttonInternalName = "btnCommand1";
+            string buttonTitle = "Button 1";
+            string? methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+
+            if (methodBase == null)
+            {
+                throw new InvalidOperationException("MethodBase.GetCurrentMethod().DeclaringType?.FullName is null");
+            }
+            else
+            {
+                Common.ButtonDataClass myButtonData1 = new Common.ButtonDataClass(
+                    buttonInternalName,
+                    buttonTitle,
+                    methodBase,
+                    Properties.Resources.Blue_32,
+                    Properties.Resources.Blue_16,
+                    "This is a tooltip for Button 1");
+
+                return myButtonData1.Data;
             }
         }
     }
 }
+
