@@ -140,9 +140,5 @@ echo ********* PostBuild Events End *********</PostBuildEvent>
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>
-	
-	<ItemGroup>
-	  <Folder Include="Forms\" />
-	</ItemGroup>
   
 </Project>
