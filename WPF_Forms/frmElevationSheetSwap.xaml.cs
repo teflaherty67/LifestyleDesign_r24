@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using LifestyleDesign_r24.Common;
 
 namespace LifestyleDesign_r24
 {

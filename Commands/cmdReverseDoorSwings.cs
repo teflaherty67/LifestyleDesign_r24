@@ -12,8 +12,8 @@ namespace LifestyleDesign_r24
 
             // this is a variable for the current Revit model
             Document doc = uiapp.ActiveUIDocument.Document;
-            // set the active view to the Door Schedule
 
+            // set the active view to the Door Schedule
             View curView;
             curView = Utils.GetScheduleByName(doc, "Door Schedule");
 

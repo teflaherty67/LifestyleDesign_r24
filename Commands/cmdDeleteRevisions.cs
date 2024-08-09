@@ -18,7 +18,7 @@ namespace LifestyleDesign_r24
             UIApplication uiapp = commandData.Application;
 
             // this is a variable for the current Revit model
-            Document doc = uiapp.ActiveUIDocument.Document;
+            Document curDoc = uiapp.ActiveUIDocument.Document;
 
             string msgText = "About to delete all Revisions.";
             string msgTitle = "Warning";
@@ -29,21 +29,21 @@ namespace LifestyleDesign_r24
             if (result == Forms.MessageBoxResult.OK)
             {
                 // start the transaction
-                using (Transaction t = new Transaction(doc))
+                using (Transaction t = new Transaction(curDoc))
                 {
                     t.Start("Delete Revisions");
 
                     // add a blank revision
-                    Revision newRevision = Revision.Create(doc);
+                    Revision newRevision = Revision.Create(curDoc);
 
                     // get all the revisions in the project
-                    IList<ElementId> revisions = Revision.GetAllRevisionIds(doc);
+                    IList<ElementId> revisions = Revision.GetAllRevisionIds(curDoc);
 
                     // remove the last revision from the list
                     revisions.RemoveAt(revisions.Count - 1);
 
                     // delete the remaining revisions
-                    doc.Delete(revisions);
+                    curDoc.Delete(revisions);
 
                     t.Commit();
 
