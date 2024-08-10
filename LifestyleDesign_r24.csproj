@@ -93,9 +93,7 @@
 	  <None Remove="Resources\Renumber_32.png" />
 	  <None Remove="Resources\ReverseSwings_16.png" />
 	  <None Remove="Resources\ReverseSwings_32.png" />
-	  <None Remove="Resources\SheetMaker_16.jpg" />
 	  <None Remove="Resources\SheetMaker_16.png" />
-	  <None Remove="Resources\SheetMaker_32.jpg" />
 	  <None Remove="Resources\SheetMaker_32.png" />
 	  <None Remove="Resources\SheetSwap_16.png" />
 	  <None Remove="Resources\SheetSwap_32.png" />
@@ -132,16 +130,12 @@
 	  <EmbeddedResource Include="Resources\Renumber_32.png" />
 	  <EmbeddedResource Include="Resources\ReverseSwings_16.png" />
 	  <EmbeddedResource Include="Resources\ReverseSwings_32.png" />
-	  <EmbeddedResource Include="Resources\SheetMaker_16.jpg" />
 	  <EmbeddedResource Include="Resources\SheetMaker_16.png" />
-	  <EmbeddedResource Include="Resources\SheetMaker_32.jpg" />
 	  <EmbeddedResource Include="Resources\SheetMaker_32.png" />
 	  <EmbeddedResource Include="Resources\SheetSwap_16.png" />
 	  <EmbeddedResource Include="Resources\SheetSwap_32.png" />
 	  <EmbeddedResource Include="Resources\ToDo_16.png" />
 	  <EmbeddedResource Include="Resources\ToDo_32.png" />
-	  <EmbeddedResource Include="Resources\Yellow_16.png" />
-	  <EmbeddedResource Include="Resources\Yellow_32.png" />
 	</ItemGroup>
 	
 	<ItemGroup>

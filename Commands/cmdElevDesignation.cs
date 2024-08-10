@@ -415,8 +415,8 @@ namespace LifestyleDesign_r24
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
-                    Properties.Resources.Blue_32,
-                    Properties.Resources.Blue_16,
+                    Properties.Resources.Red_32,
+                    Properties.Resources.Red_16,
                     "This is a tooltip for Button 1");
 
                 return myButtonData1.Data;

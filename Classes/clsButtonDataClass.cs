@@ -17,7 +17,7 @@ namespace LifestyleDesign_r24.Classes
             Data.Image = BitmapToImageSource(smallImage);
 
             // set command availability
-            Data.AvailabilityClassName = "LifestyleDesign_r24.Utils.CommandAvailability";
+            Data.AvailabilityClassName = "LifestyleDesign_r24.Common.CommandAvailability";
         }
         public clsButtonDataClass(string name, string text, string className,
             Bitmap largeImage,
@@ -33,7 +33,7 @@ namespace LifestyleDesign_r24.Classes
             Data.Image = BitmapToImageSource(smallImage);
 
             // set command availability
-            Data.AvailabilityClassName = "LifestyleDesign_r24.Utils.CommandAvailability";
+            Data.AvailabilityClassName = "LifestyleDesign_r24.Common.CommandAvailability";
         }
         public static Assembly GetAssembly()
         {

@@ -97,8 +97,8 @@ namespace LifestyleDesign_r24
         internal static PushButtonData GetButtonData()
         {
             // use this method to define the properties for this command in the Revit ribbon
-            string buttonInternalName = "btnCommand1";
-            string buttonTitle = "Button 1";
+            string buttonInternalName = "btnCommand3";
+            string buttonTitle = "Rename\rElevations";
             string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
             if (methodBase == null)
