@@ -111,9 +111,9 @@ namespace LifestyleDesign_r24
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
-                    Properties.Resources.Blue_32,
-                    Properties.Resources.Blue_16,
-                    "This is a tooltip for Button 1");
+                    Properties.Resources.ElevationRename_32,
+                    Properties.Resources.ElevationRename_16,
+                    "Renames Left & Right Elevations for Mirrored Projects");
 
                 return myButtonData1.Data;
             }

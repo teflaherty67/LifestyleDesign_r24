@@ -25,7 +25,7 @@ namespace LifestyleDesign_r24
         {
             // use this method to define the properties for this command in the Revit ribbon
             string buttonInternalName = "btnCommand1";
-            string buttonTitle = "Button 1";
+            string buttonTitle = "Mirror\rProject";
             string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
             if (methodBase == null)
@@ -38,9 +38,9 @@ namespace LifestyleDesign_r24
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
-                    Properties.Resources.Blue_32,
-                    Properties.Resources.Blue_16,
-                    "This is a tooltip for Button 1");
+                    Properties.Resources.MirrorProject_32,
+                    Properties.Resources.MirrorProject_16,
+                    "Mirrors project on specified axis");
 
                 return myButtonData1.Data;
             }

@@ -71,14 +71,77 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Resource Include="Resources\Blue_16.png" />
-	  <Resource Include="Resources\Blue_32.png" />
-	  <Resource Include="Resources\Green_16.png" />
-	  <Resource Include="Resources\Green_32.png" />
-	  <Resource Include="Resources\Red_16.png" />
-	  <Resource Include="Resources\Red_32.png" />
-	  <Resource Include="Resources\Yellow_16.png" />
-	  <Resource Include="Resources\Yellow_32.png" />
+	  <None Remove="Resources\Check_16.png" />
+	  <None Remove="Resources\Check_32.png" />
+	  <None Remove="Resources\Clear_16.png" />
+	  <None Remove="Resources\Clear_32.png" />
+	  <None Remove="Resources\CreateSchedules_16.png" />
+	  <None Remove="Resources\CreateSchedules_32.png" />
+	  <None Remove="Resources\DeleteRevisions_16.png" />
+	  <None Remove="Resources\DeleteRevisions_32.png" />
+	  <None Remove="Resources\DuplicateElements_16.png" />
+	  <None Remove="Resources\DuplicateElements_32.png" />
+	  <None Remove="Resources\ElevationRename_16.png" />
+	  <None Remove="Resources\ElevationRename_32.png" />
+	  <None Remove="Resources\MirrorProject_16.png" />
+	  <None Remove="Resources\MirrorProject_32.png" />
+	  <None Remove="Resources\NewSheet_16.png" />
+	  <None Remove="Resources\NewSheet_32.png" />
+	  <None Remove="Resources\ProjectSetup_16.png" />
+	  <None Remove="Resources\ProjectSetup_32.png" />
+	  <None Remove="Resources\Renumber_16.png" />
+	  <None Remove="Resources\Renumber_32.png" />
+	  <None Remove="Resources\ReverseSwings_16.png" />
+	  <None Remove="Resources\ReverseSwings_32.png" />
+	  <None Remove="Resources\SheetMaker_16.jpg" />
+	  <None Remove="Resources\SheetMaker_16.png" />
+	  <None Remove="Resources\SheetMaker_32.jpg" />
+	  <None Remove="Resources\SheetMaker_32.png" />
+	  <None Remove="Resources\SheetSwap_16.png" />
+	  <None Remove="Resources\SheetSwap_32.png" />
+	  <None Remove="Resources\ToDo_16.png" />
+	  <None Remove="Resources\ToDo_32.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Blue_16.png" />
+	  <EmbeddedResource Include="Resources\Blue_32.png" />
+	  <EmbeddedResource Include="Resources\Check_16.png" />
+	  <EmbeddedResource Include="Resources\Check_32.png" />
+	  <EmbeddedResource Include="Resources\Clear_16.png" />
+	  <EmbeddedResource Include="Resources\Clear_32.png" />
+	  <EmbeddedResource Include="Resources\CreateSchedules_16.png" />
+	  <EmbeddedResource Include="Resources\CreateSchedules_32.png" />
+	  <EmbeddedResource Include="Resources\DeleteRevisions_16.png" />
+	  <EmbeddedResource Include="Resources\DeleteRevisions_32.png" />
+	  <EmbeddedResource Include="Resources\DuplicateElements_16.png" />
+	  <EmbeddedResource Include="Resources\DuplicateElements_32.png" />
+	  <EmbeddedResource Include="Resources\ElevationRename_16.png" />
+	  <EmbeddedResource Include="Resources\ElevationRename_32.png" />
+	  <EmbeddedResource Include="Resources\Green_16.png" />
+	  <EmbeddedResource Include="Resources\Green_32.png" />
+	  <EmbeddedResource Include="Resources\MirrorProject_16.png" />
+	  <EmbeddedResource Include="Resources\MirrorProject_32.png" />
+	  <EmbeddedResource Include="Resources\NewSheet_16.png" />
+	  <EmbeddedResource Include="Resources\NewSheet_32.png" />
+	  <EmbeddedResource Include="Resources\ProjectSetup_16.png" />
+	  <EmbeddedResource Include="Resources\ProjectSetup_32.png" />
+	  <EmbeddedResource Include="Resources\Red_16.png" />
+	  <EmbeddedResource Include="Resources\Red_32.png" />
+	  <EmbeddedResource Include="Resources\Renumber_16.png" />
+	  <EmbeddedResource Include="Resources\Renumber_32.png" />
+	  <EmbeddedResource Include="Resources\ReverseSwings_16.png" />
+	  <EmbeddedResource Include="Resources\ReverseSwings_32.png" />
+	  <EmbeddedResource Include="Resources\SheetMaker_16.jpg" />
+	  <EmbeddedResource Include="Resources\SheetMaker_16.png" />
+	  <EmbeddedResource Include="Resources\SheetMaker_32.jpg" />
+	  <EmbeddedResource Include="Resources\SheetMaker_32.png" />
+	  <EmbeddedResource Include="Resources\SheetSwap_16.png" />
+	  <EmbeddedResource Include="Resources\SheetSwap_32.png" />
+	  <EmbeddedResource Include="Resources\ToDo_16.png" />
+	  <EmbeddedResource Include="Resources\ToDo_32.png" />
+	  <EmbeddedResource Include="Resources\Yellow_16.png" />
+	  <EmbeddedResource Include="Resources\Yellow_32.png" />
 	</ItemGroup>
 	
 	<ItemGroup>

@@ -4,27 +4,28 @@ namespace LifestyleDesign_r24
     {
         public Result OnStartup(UIControlledApplication app)
         {
-            // 1. Create ribbon tab
-            //string tabName = "My First Revit Add-in";
-            //try
-            //{
-            //    app.CreateRibbonTab(tabName);
-            //}
-            //catch (Exception)
-            //{
-            //    Debug.Print("Tab already exists.");
-            //}
+            // create ribbon tab
+            try
+            {
+                app.CreateRibbonTab("Lifestyle Design");
+            }
+            catch (Exception)
+            {
+                Debug.Print("Tab already exists");
+            }
+            
+            // create ribbon panel 
+            RibbonPanel panel1 = Common.Utils.CreateRibbonPanel(app, "Lifestyle Design", "Mirror Plans");
+            RibbonPanel panel2 = Common.Utils.CreateRibbonPanel(app, "Lifestyle Design", "Project Management");
+            RibbonPanel panel3 = Common.Utils.CreateRibbonPanel(app, "Lifestyle Design", "Project Setup");
 
-            //// 2. Create ribbon panel 
-            //RibbonPanel panel = Utils.Common.CreateRibbonPanel(app, tabName, "Revit Tools");
+            // create button data instances
+            PushButtonData btnData1_1 = cmdRevitMirror.GetButtonData();
+            PushButtonData btnData2_1 = cmdReverseDoorSwings.GetButtonData();
 
-            //// 3. Create button data instances
-            //PushButtonData btnData1 = Command1.GetButtonData();
-            //PushButtonData btnData2 = Command2.GetButtonData();
-
-            //// 4. Create buttons
-            //PushButton myButton1 = panel.AddItem(btnData1) as PushButton;
-            //PushButton myButton2 = panel.AddItem(btnData2) as PushButton;
+            // create buttons
+            PushButton myButton1 = panel1.AddItem(btnData1_1) as PushButton;
+            PushButton myButton2 = panel1.AddItem(btnData2_1) as PushButton;
 
             // NOTE:
             // To create a new tool, copy lines 35 and 39 and rename the variables to "btnData3" and "myButton3". 

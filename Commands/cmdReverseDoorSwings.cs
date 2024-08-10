@@ -4,7 +4,7 @@ using LifestyleDesign_r24.Common;
 namespace LifestyleDesign_r24
 {
     [Transaction(TransactionMode.Manual)]
-    public class Command2 : IExternalCommand
+    public class cmdReverseDoorSwings : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -107,8 +107,8 @@ namespace LifestyleDesign_r24
         internal static PushButtonData GetButtonData()
         {
             // use this method to define the properties for this command in the Revit ribbon
-            string buttonInternalName = "btnCommand1";
-            string buttonTitle = "Button 1";
+            string buttonInternalName = "btnCommand2";
+            string buttonTitle = "Reverse\rSwings";
             string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
             if (methodBase == null)
@@ -121,9 +121,9 @@ namespace LifestyleDesign_r24
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
-                    Properties.Resources.Blue_32,
-                    Properties.Resources.Blue_16,
-                    "This is a tooltip for Button 1");
+                    Properties.Resources.ReverseSwings_32,
+                    Properties.Resources.ReverseSwings_16,
+                    "Reverses all door swings");
 
                 return myButtonData1.Data;
             }

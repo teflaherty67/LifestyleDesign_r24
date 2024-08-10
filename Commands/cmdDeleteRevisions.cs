@@ -81,9 +81,9 @@ namespace LifestyleDesign_r24
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
-                    Properties.Resources.Blue_32,
-                    Properties.Resources.Blue_16,
-                    "This is a tooltip for Button 1");
+                    Properties.Resources.DeleteRevisions_32,
+                    Properties.Resources.DeleteRevisions_16,
+                    "Deletes revisions from project");
 
                 return myButtonData1.Data;
             }
