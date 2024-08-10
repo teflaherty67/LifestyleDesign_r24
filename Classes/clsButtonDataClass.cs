@@ -1,13 +1,13 @@
 ﻿using System.Windows.Media.Imaging;
 
-namespace LifestyleDesign_r24.Common
+namespace LifestyleDesign_r24.Classes
 {
-    internal class ButtonDataClass
+    internal class clsButtonDataClass
     {
         public PushButtonData Data { get; set; }
-        public ButtonDataClass(string name, string text, string className,
-            System.Drawing.Bitmap largeImage,
-            System.Drawing.Bitmap smallImage,
+        public clsButtonDataClass(string name, string text, string className,
+            Bitmap largeImage,
+            Bitmap smallImage,
             string toolTip)
         {
             Data = new PushButtonData(name, text, GetAssemblyName(), className);
@@ -19,11 +19,11 @@ namespace LifestyleDesign_r24.Common
             // set command availability
             Data.AvailabilityClassName = "LifestyleDesign_r24.Utils.CommandAvailability";
         }
-        public ButtonDataClass(string name, string text, string className,
-            System.Drawing.Bitmap largeImage,
-            System.Drawing.Bitmap smallImage,
-            System.Drawing.Bitmap largeImageDark,
-            System.Drawing.Bitmap smallImageDark,
+        public clsButtonDataClass(string name, string text, string className,
+            Bitmap largeImage,
+            Bitmap smallImage,
+            Bitmap largeImageDark,
+            Bitmap smallImageDark,
             string toolTip)
         {
             Data = new PushButtonData(name, text, GetAssemblyName(), className);
@@ -43,7 +43,7 @@ namespace LifestyleDesign_r24.Common
         {
             return GetAssembly().Location;
         }
-        public static BitmapImage BitmapToImageSource(System.Drawing.Bitmap bm)
+        public static BitmapImage BitmapToImageSource(Bitmap bm)
         {
             using (MemoryStream mem = new MemoryStream())
             {

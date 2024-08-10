@@ -1,4 +1,6 @@
-﻿namespace LifestyleDesign_r24
+﻿using LifestyleDesign_r24.Classes;
+
+namespace LifestyleDesign_r24
 {
     [Transaction(TransactionMode.Manual)]
     public class cmdRevitMirror : IExternalCommand
@@ -32,7 +34,7 @@
             }
             else
             {
-                Common.ButtonDataClass myButtonData1 = new Common.ButtonDataClass(
+                clsButtonDataClass myButtonData1 = new Classes.clsButtonDataClass(
                     buttonInternalName,
                     buttonTitle,
                     methodBase,

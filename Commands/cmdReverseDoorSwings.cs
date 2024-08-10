@@ -1,4 +1,5 @@
-﻿using LifestyleDesign_r24.Common;
+﻿using LifestyleDesign_r24.Classes;
+using LifestyleDesign_r24.Common;
 
 namespace LifestyleDesign_r24
 {
@@ -116,7 +117,7 @@ namespace LifestyleDesign_r24
             }
             else
             {
-                Common.ButtonDataClass myButtonData1 = new Common.ButtonDataClass(
+                clsButtonDataClass myButtonData1 = new Classes.clsButtonDataClass(
                     buttonInternalName,
                     buttonTitle,
                     methodBase,

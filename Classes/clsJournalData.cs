@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LifestyleDesign_r24
+namespace LifestyleDesign_r24.Classes
 {
     internal class clsJournalData
     {
