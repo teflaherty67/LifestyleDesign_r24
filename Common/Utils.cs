@@ -422,6 +422,23 @@ namespace LifestyleDesign_r24.Common
             return returnList;
         }
 
+        internal static List<View> GetAllViewsByCategory(Document curDoc, string catName)
+        {
+            List<View> m_colViews = GetAllViews(curDoc);
+
+            List<View> m_returnList = new List<View>();
+
+            foreach (View curView in m_colViews)
+            {
+                string viewCat = GetParameterValueByName(curView, "Category");
+
+                if (viewCat == catName)
+                    m_returnList.Add(curView);
+            }
+
+            return m_returnList;
+        }
+
         #endregion
 
         #region Viewports

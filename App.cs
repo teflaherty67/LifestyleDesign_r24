@@ -24,6 +24,7 @@ namespace LifestyleDesign_r24
             PushButtonData btnData2_1 = cmdReverseDoorSwings.GetButtonData();
             PushButtonData btnData3_1 = cmdElevationRename.GetButtonData();
             PushButtonData btnData4_1 = cmdElevationSheetSwap.GetButtonData();
+            PushButtonData btnData5_1 = cmdShakeAreaBoundary.GetButtonData();
 
             // create button data instances for Panel 2
             PushButtonData btnData1_2 = cmdDeleteRevisions.GetButtonData();
@@ -33,6 +34,7 @@ namespace LifestyleDesign_r24
             PushButton myButton2_2 = panel1.AddItem(btnData2_1) as PushButton;
             PushButton myButton3_1 = panel1.AddItem(btnData3_1) as PushButton;
             PushButton myButton4_1 = panel1.AddItem(btnData4_1) as PushButton;
+            PushButton myButton5_1 = panel1.AddItem(btnData5_1) as PushButton;
 
             // create buttons for panel 2
             PushButton myButton1_2 = panel2.AddItem(btnData1_2) as PushButton;

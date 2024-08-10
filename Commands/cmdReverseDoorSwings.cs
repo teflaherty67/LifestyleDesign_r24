@@ -107,7 +107,7 @@ namespace LifestyleDesign_r24
         internal static PushButtonData GetButtonData()
         {
             // use this method to define the properties for this command in the Revit ribbon
-            string buttonInternalName = "btnCommand2";
+            string buttonInternalName = "btnCommand2_1";
             string buttonTitle = "Reverse\rSwings";
             string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
