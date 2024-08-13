@@ -460,7 +460,62 @@ namespace LifestyleDesign_r24.Common
             return m_vpList;
         }
 
+        #endregion
 
+        #region View Templates
+
+        public static List<View> GetAllViewTemplates(Document curDoc)
+        {
+            List<View> returnList = new List<View>();
+            List<View> viewList = GetAllViews(curDoc);
+
+            //loop through views and check if is view template
+            foreach (View v in viewList)
+            {
+                if (v.IsTemplate == true)
+                {
+                    //add view template to list
+                    returnList.Add(v);
+                }
+            }
+
+            return returnList;
+        }
+
+        public static List<string> GetAllViewTemplateNames(Document m_doc)
+        {
+            //returns list of view templates
+            List<string> viewTempList = new List<string>();
+            List<View> viewList = new List<View>();
+            viewList = GetAllViews(m_doc);
+
+            //loop through views and check if is view template
+            foreach (View v in viewList)
+            {
+                if (v.IsTemplate == true)
+                {
+                    //add view template to list
+                    viewTempList.Add(v.Name);
+                }
+            }
+
+            return viewTempList;
+        }
+
+        public static View GetViewTemplateByName(Document curDoc, string viewTemplateName)
+        {
+            List<View> viewTemplateList = GetAllViewTemplates(curDoc);
+
+            foreach (View v in viewTemplateList)
+            {
+                if (v.Name == viewTemplateName)
+                {
+                    return v;
+                }
+            }
+
+            return null;
+        }
 
         #endregion
     }
