@@ -46,6 +46,15 @@ namespace LifestyleDesign_r24
                             .OfCategory(BuiltInCategory.OST_AreaSchemeLines)
                             .WhereElementIsNotElementType();
 
+                        // get all the area tags
+                        FilteredElementCollector colAreaTags = new FilteredElementCollector(curDoc, curView.Id)
+                            .OfClass(typeof(SpatialElementTag));
+
+                        foreach (SpatialElementTag curTag in colAreaTags)
+                        {
+                            curTag.HasLeader = false;
+                        }
+
                         if (colABLines.Count() > 0)
                         {
                             // get the first line in the list
@@ -56,8 +65,8 @@ namespace LifestyleDesign_r24
 
                             // create a vector to move the line
                             XYZ curPoint = curLocation.Curve.GetEndPoint(0) as XYZ;
-                            XYZ newVector = new XYZ(.25 + curPoint.X, curPoint.Y, curPoint.Z);
-                            XYZ oldVector = new XYZ(newVector.X - .25, newVector.Y, newVector.Z);
+                            XYZ newVector = new XYZ(.25, 0, 0);
+                            XYZ oldVector = new XYZ( -.25, 0,0);
 
                             // move the line to the left
                             lineToMove.Location.Move(newVector);

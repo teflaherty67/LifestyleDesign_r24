@@ -433,7 +433,11 @@ namespace LifestyleDesign_r24.Common
                 string viewCat = GetParameterValueByName(curView, "Category");
 
                 if (viewCat == catName)
-                    m_returnList.Add(curView);
+                {
+                    if (curView.IsTemplate == false)
+                        m_returnList.Add(curView);
+                }
+                    
             }
 
             return m_returnList;
