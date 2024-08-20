@@ -2,10 +2,10 @@
 
 namespace LifestyleDesign_r24.Classes
 {
-    internal class clsButtonDataClass
+    internal class clsButtonData
     {
         public PushButtonData Data { get; set; }
-        public clsButtonDataClass(string name, string text, string className,
+        public clsButtonData(string name, string text, string className,
             Bitmap largeImage,
             Bitmap smallImage,
             string toolTip)
@@ -19,7 +19,7 @@ namespace LifestyleDesign_r24.Classes
             // set command availability
             Data.AvailabilityClassName = "LifestyleDesign_r24.Common.CommandAvailability";
         }
-        public clsButtonDataClass(string name, string text, string className,
+        public clsButtonData(string name, string text, string className,
             Bitmap largeImage,
             Bitmap smallImage,
             Bitmap largeImageDark,

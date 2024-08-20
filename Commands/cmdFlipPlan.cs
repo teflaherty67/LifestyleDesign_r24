@@ -15,37 +15,31 @@ namespace LifestyleDesign_r24
             UIApplication uiapp = commandData.Application;
 
             // this is a variable for the current Revit model
-            Document doc = uiapp.ActiveUIDocument.Document;
-
-            // get Revit Command Id for Mirror Project
-            RevitCommandId commandId = RevitCommandId.LookupPostableCommandId(PostableCommand.MirrorProject);
-
-            // run the command using PostCommand
-            uiapp.PostCommand(commandId);
+            Document doc = uiapp.ActiveUIDocument.Document;            
 
             // run door swing reversal
-            cmdReverseDoorSwings com_2 = new cmdReverseDoorSwings();
-            com_2.Execute(commandData, ref message, elements);
+            cmdReverseDoorSwings com_1 = new cmdReverseDoorSwings();
+            com_1.Execute(commandData, ref message, elements);
 
             // run elevation rename
-            cmdElevationRename com_3 = new cmdElevationRename();
-            com_3.Execute(commandData, ref message, elements);
+            cmdElevationRename com_2 = new cmdElevationRename();
+            com_2.Execute(commandData, ref message, elements);
 
             // run sheet swap
-            cmdElevationSheetSwap com_4 = new cmdElevationSheetSwap();
-            com_4.Execute(commandData, ref message, elements);
+            cmdElevationSheetSwap com_3 = new cmdElevationSheetSwap();
+            com_3.Execute(commandData, ref message, elements);
 
             // run boundary shake
-            cmdShakeAreaBoundary com_5 = new cmdShakeAreaBoundary();
-            com_5.Execute(commandData, ref message, elements);
+            cmdShakeAreaBoundary com_4 = new cmdShakeAreaBoundary();
+            com_4.Execute(commandData, ref message, elements);
 
             return Result.Succeeded;
         }
         internal static PushButtonData GetButtonData()
         {
             // use this method to define the properties for this command in the Revit ribbon
-            string buttonInternalName = "btnCommand1";
-            string buttonTitle = "Button 1";
+            string buttonInternalName = "btnCommand6_1";
+            string buttonTitle = "Flip\rPlan";
             string? methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
             if (methodBase == null)
@@ -54,12 +48,12 @@ namespace LifestyleDesign_r24
             }
             else
             {
-                Classes.clsButtonDataClass myButtonData1 = new Classes.clsButtonDataClass(
+                Classes.clsButtonData myButtonData1 = new Classes.clsButtonData(
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
-                    Properties.Resources.Blue_32,
-                    Properties.Resources.Blue_16,
+                    Properties.Resources.FlipPlan_32,
+                    Properties.Resources.FlipPlan_16,
                     "This is a tooltip for Button 1");
 
                 return myButtonData1.Data;

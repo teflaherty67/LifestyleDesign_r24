@@ -127,7 +127,7 @@ namespace LifestyleDesign_r24
             }
             else
             {
-                clsButtonDataClass myButtonData1 = new Classes.clsButtonDataClass(
+                clsButtonData myButtonData1 = new Classes.clsButtonData(
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
