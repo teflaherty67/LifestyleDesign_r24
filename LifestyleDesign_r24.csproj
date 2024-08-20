@@ -83,6 +83,8 @@
 	  <None Remove="Resources\DuplicateElements_32.png" />
 	  <None Remove="Resources\ElevationRename_16.png" />
 	  <None Remove="Resources\ElevationRename_32.png" />
+	  <None Remove="Resources\FlipPlan_16.jpg" />
+	  <None Remove="Resources\FlipPlan_32.jpg" />
 	  <None Remove="Resources\MirrorProject_16.png" />
 	  <None Remove="Resources\MirrorProject_32.png" />
 	  <None Remove="Resources\NewSheet_16.png" />
@@ -116,6 +118,8 @@
 	  <EmbeddedResource Include="Resources\DuplicateElements_32.png" />
 	  <EmbeddedResource Include="Resources\ElevationRename_16.png" />
 	  <EmbeddedResource Include="Resources\ElevationRename_32.png" />
+	  <EmbeddedResource Include="Resources\FlipPlan_16.jpg" />
+	  <EmbeddedResource Include="Resources\FlipPlan_32.jpg" />
 	  <EmbeddedResource Include="Resources\Green_16.png" />
 	  <EmbeddedResource Include="Resources\Green_32.png" />
 	  <EmbeddedResource Include="Resources\MirrorProject_16.png" />
