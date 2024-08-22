@@ -161,22 +161,22 @@ namespace LifestyleDesign_r24.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] FlipPlan_16 {
+        internal static System.Drawing.Bitmap FlipPlan_16 {
             get {
                 object obj = ResourceManager.GetObject("FlipPlan_16", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static byte[] FlipPlan_32 {
+        internal static System.Drawing.Bitmap FlipPlan_32 {
             get {
                 object obj = ResourceManager.GetObject("FlipPlan_32", resourceCulture);
-                return ((byte[])(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
