@@ -84,30 +84,30 @@ namespace LifestyleDesign_r24
 
             return Result.Succeeded;            
         }
-        internal static PushButtonData GetButtonData()
-        {
-            // use this method to define the properties for this command in the Revit ribbon
-            string buttonInternalName = "btnCommand5_1";
-            string buttonTitle = "Shake\rBoundaries";
-            string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+        //internal static PushButtonData GetButtonData()
+        //{
+        //    // use this method to define the properties for this command in the Revit ribbon
+        //    string buttonInternalName = "btnCommand5_1";
+        //    string buttonTitle = "Shake\rBoundaries";
+        //    string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
-            if (methodBase == null)
-            {
-                throw new InvalidOperationException("MethodBase.GetCurrentMethod().DeclaringType?.FullName is null");
-            }
-            else
-            {
-                clsButtonData myButtonData1 = new Classes.clsButtonData(
-                    buttonInternalName,
-                    buttonTitle,
-                    methodBase,
-                    Properties.Resources.Green_32,
-                    Properties.Resources.Green_16,
-                    "Shifts area boundary lines back and forth to correct negative numbers");
+        //    if (methodBase == null)
+        //    {
+        //        throw new InvalidOperationException("MethodBase.GetCurrentMethod().DeclaringType?.FullName is null");
+        //    }
+        //    else
+        //    {
+        //        clsButtonData myButtonData1 = new Classes.clsButtonData(
+        //            buttonInternalName,
+        //            buttonTitle,
+        //            methodBase,
+        //            Properties.Resources.Green_32,
+        //            Properties.Resources.Green_16,
+        //            "Shifts area boundary lines back and forth to correct negative numbers");
 
-                return myButtonData1.Data;
-            }
-        }
+        //        return myButtonData1.Data;
+        //    }
+        //}
     }
 }
 

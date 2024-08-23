@@ -114,29 +114,29 @@ namespace LifestyleDesign_r24
 
             return Result.Succeeded;
         }
-        internal static PushButtonData GetButtonData()
-        {
-            // use this method to define the properties for this command in the Revit ribbon
-            string buttonInternalName = "btnCommand4_1";
-            string buttonTitle = "Sheet\rSwap";
-            string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+        //internal static PushButtonData GetButtonData()
+        //{
+        //    // use this method to define the properties for this command in the Revit ribbon
+        //    string buttonInternalName = "btnCommand4_1";
+        //    string buttonTitle = "Sheet\rSwap";
+        //    string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
-            if (methodBase == null)
-            {
-                throw new InvalidOperationException("MethodBase.GetCurrentMethod().DeclaringType?.FullName is null");
-            }
-            else
-            {
-                clsButtonData myButtonData1 = new Classes.clsButtonData(
-                    buttonInternalName,
-                    buttonTitle,
-                    methodBase,
-                    Properties.Resources.SheetSwap_32,
-                    Properties.Resources.SheetSwap_16,
-                    "Swaps the Left & Right Elevation sheets for Mirrored Projects");
+        //    if (methodBase == null)
+        //    {
+        //        throw new InvalidOperationException("MethodBase.GetCurrentMethod().DeclaringType?.FullName is null");
+        //    }
+        //    else
+        //    {
+        //        clsButtonData myButtonData1 = new Classes.clsButtonData(
+        //            buttonInternalName,
+        //            buttonTitle,
+        //            methodBase,
+        //            Properties.Resources.SheetSwap_32,
+        //            Properties.Resources.SheetSwap_16,
+        //            "Swaps the Left & Right Elevation sheets for Mirrored Projects");
 
-                return myButtonData1.Data;
-            }
-        }
+        //        return myButtonData1.Data;
+        //    }
+        //}
     }
 }

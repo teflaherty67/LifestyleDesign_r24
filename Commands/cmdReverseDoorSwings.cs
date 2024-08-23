@@ -104,30 +104,30 @@ namespace LifestyleDesign_r24
                 return Result.Failed;
             }
         }
-        internal static PushButtonData GetButtonData()
-        {
-            // use this method to define the properties for this command in the Revit ribbon
-            string buttonInternalName = "btnCommand2_1";
-            string buttonTitle = "Reverse\rSwings";
-            string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+        //internal static PushButtonData GetButtonData()
+        //{
+        //    // use this method to define the properties for this command in the Revit ribbon
+        //    string buttonInternalName = "btnCommand2_1";
+        //    string buttonTitle = "Reverse\rSwings";
+        //    string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
 
-            if (methodBase == null)
-            {
-                throw new InvalidOperationException("MethodBase.GetCurrentMethod().DeclaringType?.FullName is null");
-            }
-            else
-            {
-                clsButtonData myButtonData1 = new Classes.clsButtonData(
-                    buttonInternalName,
-                    buttonTitle,
-                    methodBase,
-                    Properties.Resources.ReverseSwings_32,
-                    Properties.Resources.ReverseSwings_16,
-                    "Reverses all door swings");
+        //    if (methodBase == null)
+        //    {
+        //        throw new InvalidOperationException("MethodBase.GetCurrentMethod().DeclaringType?.FullName is null");
+        //    }
+        //    else
+        //    {
+        //        clsButtonData myButtonData1 = new Classes.clsButtonData(
+        //            buttonInternalName,
+        //            buttonTitle,
+        //            methodBase,
+        //            Properties.Resources.ReverseSwings_32,
+        //            Properties.Resources.ReverseSwings_16,
+        //            "Reverses all door swings");
 
-                return myButtonData1.Data;
-            }
-        }
+        //        return myButtonData1.Data;
+        //    }
+        //}
     }
 }
 

@@ -114,9 +114,7 @@
 	  <EmbeddedResource Include="Resources\DuplicateElements_32.png" />
 	  <EmbeddedResource Include="Resources\ElevationRename_16.png" />
 	  <EmbeddedResource Include="Resources\ElevationRename_32.png" />
-	  <EmbeddedResource Include="Resources\FlipPlan_16.png">
-	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </EmbeddedResource>
+	  <EmbeddedResource Include="Resources\FlipPlan_16.png" />
 	  <EmbeddedResource Include="Resources\FlipPlan_32.png" />
 	  <EmbeddedResource Include="Resources\Green_16.png" />
 	  <EmbeddedResource Include="Resources\Green_32.png" />
