@@ -40,7 +40,10 @@ namespace LifestyleDesign_r24
             // use this method to define the properties for this command in the Revit ribbon
             string buttonInternalName = "btnCommand6_1";
             string buttonTitle = "Flip\rPlan";
-            string? methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+            string methodBase = MethodBase.GetCurrentMethod().DeclaringType?.FullName;
+
+            Bitmap curBmp32 = Classes.clsButtonData.ConvertBytetoBitmap(Properties.Resources.FlipPlan_32);
+            Bitmap curBmp16 = Classes.clsButtonData.ConvertBytetoBitmap(Properties.Resources.FlipPlan_16);
 
             if (methodBase == null)
             {
@@ -52,9 +55,9 @@ namespace LifestyleDesign_r24
                     buttonInternalName,
                     buttonTitle,
                     methodBase,
-                    Properties.Resources.FlipPlan_32,
-                    Properties.Resources.FlipPlan_16,
-                    "This is a tooltip for Button 1");
+                    curBmp32,
+                    curBmp16,
+                    "Completes the flipping process after the project is mirrored.");
 
                 return myButtonData1.Data;
             }

@@ -58,5 +58,13 @@ namespace LifestyleDesign_r24.Classes
                 return bmi;
             }
         }
+
+        public static System.Drawing.Bitmap ConvertBytetoBitmap(byte[] byteArrayLn)
+        {
+            using (var ms = new MemoryStream(byteArrayLn))
+            {
+                return new System.Drawing.Bitmap(ms);
+            }
+        }
     }
 }
