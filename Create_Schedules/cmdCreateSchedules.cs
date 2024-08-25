@@ -35,6 +35,8 @@ namespace LifestyleDesign_r24
             else if (GlobalVars.ElevDesignation == "T")
                 newFilter = "6";
 
+            // open the form
+
             frmCreateSchedules curForm = new frmCreateSchedules()
             {
                 Width = 420,
