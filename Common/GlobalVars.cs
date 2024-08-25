@@ -3,5 +3,7 @@
     internal static class GlobalVars
     {
         public static string JobNumber;
+
+        public static string ElevDesignation;
     }
 }

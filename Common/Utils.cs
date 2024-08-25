@@ -1,13 +1,163 @@
-﻿using System.Text.RegularExpressions;
+﻿using LifestyleDesign_r24.Classes;
+using System.Text.RegularExpressions;
 using System.Windows.Media.Imaging;
 
 namespace LifestyleDesign_r24.Common
 {
     internal static class Utils
     {
+        #region Area Plans
+
+        internal static void CreateFloorAreaWithTag(Document curDoc, ViewPlan areaPlan, ref UV insPoint, ref XYZ tagInsert, clsAreaData areaInfo)
+        {
+            Area curArea = curDoc.Create.NewArea(areaPlan, insPoint);
+            curArea.Number = areaInfo.Number;
+            curArea.Name = areaInfo.Name;
+            curArea.LookupParameter("Area Category").Set(areaInfo.Category);
+            curArea.LookupParameter("Comments").Set(areaInfo.Comments);
+
+            AreaTag tag = curDoc.Create.NewAreaTag(areaPlan, curArea, insPoint);
+            tag.TagHeadPosition = tagInsert;
+            tag.HasLeader = false;
+
+            UV offset = new UV(0, 8);
+            insPoint = insPoint.Subtract(offset);
+
+            XYZ tagOffset = new XYZ(0, 8, 0);
+            tagInsert = tagInsert.Subtract(tagOffset);
+
+            if (areaInfo.Ratio != 99)
+            {
+                curArea.LookupParameter("150 Ratio").Set(areaInfo.Ratio);
+            }
+        }
+
+        internal static ViewPlan GetAreaPlanByViewFamilyName(Document doc, string vftName)
+        {
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            collector.OfClass(typeof(ViewPlan));
+
+            foreach (ViewPlan curViewPlan in collector)
+            {
+                if (curViewPlan.ViewType == ViewType.AreaPlan)
+                {
+                    ViewFamilyType curVFT = doc.GetElement(curViewPlan.GetTypeId()) as ViewFamilyType;
+
+                    if (curVFT.Name == vftName)
+                        return curViewPlan;
+                }
+            }
+
+            return null;
+        }
+
+        #endregion        
+
+        #region Area Scheme
+
+        internal static AreaScheme GetAreaSchemeByName(Document doc, string schemeName)
+        {
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            collector.OfClass(typeof(AreaScheme));
+
+            foreach (AreaScheme areaScheme in collector)
+            {
+                if (areaScheme.Name == schemeName)
+                {
+                    return areaScheme;
+                }
+            }
+
+            return null;
+        }
+
+        #endregion
+
+        #region Color Fill Scheme
+
+        internal static ColorFillScheme GetColorFillSchemeByName(Document curDoc, string schemeName, AreaScheme areaScheme)
+        {
+            try
+            {
+                ColorFillScheme colorfill = new FilteredElementCollector(curDoc)
+               .OfCategory(BuiltInCategory.OST_ColorFillSchema)
+               .Cast<ColorFillScheme>()
+               .Where(x => x.Name.Equals(schemeName) && x.AreaSchemeId.Equals(areaScheme.Id))
+               .First();
+
+                return colorfill;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        internal static void AddColorLegend(View view, ColorFillScheme scheme)
+        {
+            ElementId areaCatId = new ElementId(BuiltInCategory.OST_Areas);
+            ElementId curLegendId = view.GetColorFillSchemeId(areaCatId);
+
+            if (curLegendId == ElementId.InvalidElementId)
+                view.SetColorFillSchemeId(areaCatId, scheme.Id);
+
+            ColorFillLegend.Create(view.Document, view.Id, areaCatId, XYZ.Zero);
+        }
+
+        #endregion
+
+        #region Levels
+
+        public static List<Level> GetAllLevels(Document doc)
+        {
+            FilteredElementCollector colLevels = new FilteredElementCollector(doc);
+            colLevels.OfCategory(BuiltInCategory.OST_Levels);
+
+            List<Level> levels = new List<Level>();
+            foreach (Element x in colLevels.ToElements())
+            {
+                if (x.GetType() == typeof(Level))
+                {
+                    levels.Add((Level)x);
+                }
+            }
+
+            return levels;           
+        }
+
+        internal static List<Level> GetLevelByNameContains(Document doc, string levelWord)
+        {
+            List<Level> levels = GetAllLevels(doc);
+
+            List<Level> returnList = new List<Level>();
+
+            foreach (Level curLevel in levels)
+            {
+                if (curLevel.Name.Contains(levelWord))
+                    returnList.Add(curLevel);
+            }
+
+            return returnList;
+        }
+
+        internal static Level GetLevelByName(Document doc, string levelName)
+        {
+            List<Level> levels = GetAllLevels(doc);
+
+            foreach (Level curLevel in levels)
+            {
+                Debug.Print(curLevel.Name);
+
+                if (curLevel.Name.Equals(levelName))
+                    return curLevel;
+            }
+
+            return null;
+        }
+
+        #endregion
 
         #region Parameters
-
 
         internal static string GetParameterValueByName(Element element, string paramName)
         {
@@ -26,15 +176,7 @@ namespace LifestyleDesign_r24.Common
                 }
 
             return "";
-        }
-
-        internal static string SetParameterByNameAndWritable(Element curElem, string paramName, string value)
-        {
-            Parameter curParam = GetParameterByNameAndWritable(curElem, paramName);
-
-            curParam.Set(value);
-            return curParam.ToString();
-        }
+        }        
 
         internal static Parameter GetParameterByName(Element curElem, string paramName)
         {
@@ -56,6 +198,35 @@ namespace LifestyleDesign_r24.Common
             }
 
             return null;
+        }
+
+        internal static ElementId GetProjectParameterId(Document doc, string name)
+        {
+            ParameterElement pElem = new FilteredElementCollector(doc)
+                .OfClass(typeof(ParameterElement))
+                .Cast<ParameterElement>()
+                .Where(e => e.Name.Equals(name))
+                .FirstOrDefault();
+
+            return pElem?.Id;
+        }
+
+        internal static ElementId GetBuiltInParameterId(Document doc, BuiltInCategory cat, BuiltInParameter bip)
+        {
+            FilteredElementCollector collector = new FilteredElementCollector(doc);
+            collector.OfCategory(cat);
+
+            Parameter curParam = collector.FirstElement().get_Parameter(bip);
+
+            return curParam?.Id;
+        }
+
+        internal static string SetParameterByNameAndWritable(Element curElem, string paramName, string value)
+        {
+            Parameter curParam = GetParameterByNameAndWritable(curElem, paramName);
+
+            curParam.Set(value);
+            return curParam.ToString();
         }
 
         internal static void SetParameterByName(Element element, string paramName, string value)
@@ -80,6 +251,19 @@ namespace LifestyleDesign_r24.Common
 
                 param.Set(value);
             }
+        }
+
+        internal static bool SetParameterValue(Element curElem, string paramName, string value)
+        {
+            Parameter curParam = GetParameterByName(curElem, paramName);
+
+            if (curParam != null)
+            {
+                curParam.Set(value);
+                return true;
+            }
+
+            return false;
         }
 
         #endregion
@@ -127,6 +311,15 @@ namespace LifestyleDesign_r24.Common
 
         #region Schedules
 
+        internal static ViewSchedule CreateAreaSchedule(Document doc, string schedName, AreaScheme curAreaScheme)
+        {
+            ElementId catId = new ElementId(BuiltInCategory.OST_Areas);
+            ViewSchedule newSchedule = ViewSchedule.CreateSchedule(doc, catId, curAreaScheme.Id);
+            newSchedule.Name = schedName;
+
+            return newSchedule;
+        }
+
         internal static List<ViewSchedule> GetAllSchedulesByElevation(Document doc, string newElev)
         {
             List<ViewSchedule> m_scheduleList = GetAllSchedules(doc);
@@ -172,6 +365,54 @@ namespace LifestyleDesign_r24.Common
             {
                 if (curSchedule.Name == v)
                     return curSchedule;
+            }
+
+            return null;
+        }
+
+        internal static List<ViewSchedule> GetAllScheduleByNameContains(Document doc, string schedName)
+        {
+            List<ViewSchedule> m_scheduleList = GetAllSchedules(doc);
+
+            List<ViewSchedule> m_returnList = new List<ViewSchedule>();
+
+            foreach (ViewSchedule curSchedule in m_scheduleList)
+            {
+                if (curSchedule.Name.Contains(schedName))
+                    m_returnList.Add(curSchedule);
+            }
+
+            return m_returnList;
+        }
+
+        private static List<ViewSchedule> GetAllViewScheduleTemplates(Document curDoc)
+        {
+            List<ViewSchedule> returnList = new List<ViewSchedule>();
+            List<ViewSchedule> viewList = GetAllSchedules(curDoc);
+
+            //loop through views and check if is view template
+            foreach (ViewSchedule v in viewList)
+            {
+                if (v.IsTemplate == true)
+                {
+                    //add view template to list
+                    returnList.Add(v);
+                }
+            }
+
+            return returnList;
+        }
+
+        public static ViewSchedule GetViewScheduleTemplateByName(Document curDoc, string viewSchedTemplateName)
+        {
+            List<ViewSchedule> viewSchedTemplateList = GetAllViewScheduleTemplates(curDoc);
+
+            foreach (ViewSchedule v in viewSchedTemplateList)
+            {
+                if (v.Name == viewSchedTemplateName)
+                {
+                    return v;
+                }
             }
 
             return null;
@@ -235,6 +476,118 @@ namespace LifestyleDesign_r24.Common
             }
 
             return returnList;
+        }
+
+        internal static ViewSchedule GetScheduleByNameContains(Document doc, string scheduleString)
+        {
+            List<ViewSchedule> m_scheduleList = GetAllSchedules(doc);
+
+            foreach (ViewSchedule curSchedule in m_scheduleList)
+            {
+                if (curSchedule.Name.Contains(scheduleString))
+                    return curSchedule;
+            }
+
+            return null;
+        }
+
+        internal static void DuplicateAndRenameSheetIndex(Document curDoc, string newFilter)
+        {
+            // duplicate the first schedule found with "Sheet Index" in the name
+            List<ViewSchedule> listSched = Utils.GetAllScheduleByNameContains(curDoc, "Sheet Index");
+            ViewSchedule dupSched = listSched.FirstOrDefault();
+
+            if (dupSched == null)
+            {
+                // call another method to create one
+
+                return; // no schedule to duplicate
+            }
+
+            ViewSchedule indexSched = curDoc.GetElement(dupSched.Duplicate(ViewDuplicateOption.Duplicate)) as ViewSchedule;
+
+            // rename the duplicated schedule to the new elevation
+            string originalName = indexSched.Name;
+            string[] schedTitle = originalName.Split('-');
+
+            string curTitle = schedTitle[0];
+
+            indexSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
+
+            Utils.SetParameterValue(indexSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
+
+            // update the filter value to the new elevation code filter
+            ScheduleFilter codeFilter = indexSched.Definition.GetFilter(0);
+
+            if (codeFilter.IsStringValue)
+            {
+                codeFilter.SetValue(newFilter);
+                indexSched.Definition.SetFilter(0, codeFilter);
+            }
+        }
+
+        internal static void DuplicateAndConfigureVeneerSchedule(Document curDoc)
+        {
+            // duplicate the first schedule with "Exterior Venner Calculations" in the name
+            List<ViewSchedule> listSched = Utils.GetAllScheduleByNameContains(curDoc, "Exterior Veneer Calculations");
+            ViewSchedule dupSched = listSched.FirstOrDefault();
+
+            if (dupSched == null)
+            {
+                // call another method to create one
+
+                return; // no schedule to duplicate
+            }
+
+            // duplicate the schedule
+            ViewSchedule veneerSched = curDoc.GetElement(dupSched.Duplicate(ViewDuplicateOption.Duplicate)) as ViewSchedule;
+
+            // rename the duplicated schedule to the new elevation
+            string originalName = veneerSched.Name;
+            string[] schedTitle = originalName.Split('-');
+
+            veneerSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
+
+            Utils.SetParameterValue(veneerSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
+
+            //// set the design option to the specified elevation designation
+            //DesignOption curOption = Utils.getDesignOptionByName(curDoc, "Elevation : " + Globals.ElevDesignation);
+
+            //Parameter doParam = veneerSched.get_Parameter(BuiltInParameter.VIEWER_OPTION_VISIBILITY);
+
+            //doParam.Set(curOption.Id); //??? the code is getting the right option, but it's not changing anything in the model
+        }
+
+        internal static void DuplicateAndConfigureEquipmentSchedule(Document curDoc)
+        {
+            // duplicate the first schedule with "Roof Ventilation Equipment" in the name
+            List<ViewSchedule> listSched = Utils.GetAllScheduleByNameContains(curDoc, "Roof Ventilation Equipment");
+            ViewSchedule dupSched = listSched.FirstOrDefault();
+
+            if (dupSched == null)
+            {
+                // call another method to create one
+
+                return; // no schedule to duplicate
+            }
+
+            // duplicate the schedule
+            ViewSchedule equipmentSched = curDoc.GetElement(dupSched.Duplicate(ViewDuplicateOption.Duplicate)) as ViewSchedule;
+
+            // rename the duplicated schedule to the new elevation
+            string originalName = equipmentSched.Name;
+            string[] schedTitle = originalName.Split('-');
+
+            equipmentSched.Name = schedTitle[0] + "- Elevation " + GlobalVars.ElevDesignation;
+
+            Utils.SetParameterValue(equipmentSched, "Elevation Designation", "Elevation " + GlobalVars.ElevDesignation);
+
+            //// set the design option to the specified elevation designation
+            //DesignOption curOption = Utils.getDesignOptionByName(curDoc, "Elevation : " + Globals.ElevDesignation);
+
+            //Parameter doParam = veneerSched.get_Parameter(BuiltInParameter.VIEWER_OPTION_VISIBILITY);
+
+            //doParam.Set(curOption.Id); //??? the code is getting the right option, but it's not changing anything in the model
         }
 
         #endregion
