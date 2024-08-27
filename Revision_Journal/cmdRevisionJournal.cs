@@ -11,7 +11,7 @@ namespace LifestyleDesign_r24
             UIApplication uiapp = commandData.Application;
 
             // this is a variable for the current Revit model
-            Document doc = uiapp.ActiveUIDocument.Document;
+            Document curDoc = uiapp.ActiveUIDocument.Document;
 
             frmJobNumber curForm1 = new frmJobNumber();
 
@@ -23,7 +23,7 @@ namespace LifestyleDesign_r24
 
             curForm1.ShowDialog();
 
-            frmRevisionJournal curForm = new frmRevisionJournal(doc.PathName);
+            frmRevisionJournal curForm = new frmRevisionJournal(curDoc.PathName);
 
             curForm.Width = 700;
             curForm.Height = 500;

@@ -11,7 +11,7 @@ namespace LifestyleDesign_r24
             UIApplication uiapp = commandData.Application;
 
             // this is a variable for the current Revit model
-            Document doc = uiapp.ActiveUIDocument.Document;
+            Document curDoc = uiapp.ActiveUIDocument.Document;
 
             // get Revit Command Id for Mirror Project
             RevitCommandId commandId = RevitCommandId.LookupPostableCommandId(PostableCommand.MirrorProject);

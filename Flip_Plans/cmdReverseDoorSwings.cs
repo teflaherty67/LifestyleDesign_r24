@@ -12,14 +12,14 @@ namespace LifestyleDesign_r24
             UIApplication uiapp = commandData.Application;
 
             // this is a variable for the current Revit model
-            Document doc = uiapp.ActiveUIDocument.Document;
+            Document curDoc = uiapp.ActiveUIDocument.Document;
 
             // this is a variable for the current Revit model in the UI
             UIDocument uidoc = uiapp.ActiveUIDocument;
 
             // set the active view to the Door Schedule
             View curView;
-            curView = Utils.GetScheduleByName(doc, "Door Schedule");
+            curView = Utils.GetScheduleByName(curDoc, "Door Schedule");
 
             uidoc.ActiveView = curView;
 
@@ -33,7 +33,7 @@ namespace LifestyleDesign_r24
             {
                 // get all the doors in the project & create lists by swing
 
-                FilteredElementCollector colDoors = new FilteredElementCollector(doc);
+                FilteredElementCollector colDoors = new FilteredElementCollector(curDoc);
                 colDoors.OfCategory(BuiltInCategory.OST_Doors);
                 colDoors.WhereElementIsNotElementType();
 
@@ -64,7 +64,7 @@ namespace LifestyleDesign_r24
                 }
 
                 // start the transaction
-                using (Transaction t = new Transaction(doc))
+                using (Transaction t = new Transaction(curDoc))
                 {
                     t.Start("Reverse Door Swings");
 

@@ -12,10 +12,10 @@ namespace LifestyleDesign_r24
             UIApplication uiapp = commandData.Application;
 
             // this is a variable for the current Revit model
-            Document doc = uiapp.ActiveUIDocument.Document;
+            Document curDoc = uiapp.ActiveUIDocument.Document;
 
             // get all viewports
-            FilteredElementCollector vpCollector = new FilteredElementCollector(doc);
+            FilteredElementCollector vpCollector = new FilteredElementCollector(curDoc);
             vpCollector.OfCategory(BuiltInCategory.OST_Viewports);
 
             // filter viewports for sheet names that contains "Exterior Elevations"
@@ -25,8 +25,8 @@ namespace LifestyleDesign_r24
 
             foreach (Viewport vPort in vpCollector)
             {
-                ViewSheet curSheet = doc.GetElement(vPort.SheetId) as ViewSheet;
-                View curView = doc.GetElement(vPort.ViewId) as View;
+                ViewSheet curSheet = curDoc.GetElement(vPort.SheetId) as ViewSheet;
+                View curView = curDoc.GetElement(vPort.ViewId) as View;
 
                 string sName = Utils.GetParameterValueByName(curSheet, "Sheet Name");
                 string vName = curView.Name;
@@ -79,12 +79,12 @@ namespace LifestyleDesign_r24
                 pB.Hide();
 
                 // start the transaction
-                using (Transaction t = new Transaction(doc))
+                using (Transaction t = new Transaction(curDoc))
                 {
                     t.Start("Reorder Elevation Sheets");
 
-                    List<ViewSheet> matchingLeftSheets = Utils.GetSheetsByNumber(doc, numLeft1);
-                    List<ViewSheet> matchingRightSheets = Utils.GetSheetsByNumber(doc, numRight1);
+                    List<ViewSheet> matchingLeftSheets = Utils.GetSheetsByNumber(curDoc, numLeft1);
+                    List<ViewSheet> matchingRightSheets = Utils.GetSheetsByNumber(curDoc, numRight1);
 
                     foreach (ViewSheet sheet in matchingLeftSheets)
                     {

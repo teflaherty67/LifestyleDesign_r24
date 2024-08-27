@@ -28,7 +28,7 @@ namespace LifestyleDesign_r24
             PushButtonData btnData2_1 = cmdFlipPlan.GetButtonData();
 
             // create button data instances for Panel 2
-            PushButtonData btnData1_2 = cmdDeleteRevisions.GetButtonData();
+            PushButtonData btnData1_2 = cmdProjectCleanUp.GetButtonData();
 
             // create buttons for panel 1
             PushButton myButton1_1 = panel1.AddItem(btnData1_1) as PushButton;

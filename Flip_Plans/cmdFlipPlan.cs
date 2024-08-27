@@ -15,7 +15,7 @@ namespace LifestyleDesign_r24
             UIApplication uiapp = commandData.Application;
 
             // this is a variable for the current Revit model
-            Document doc = uiapp.ActiveUIDocument.Document;            
+            Document curDoc = uiapp.ActiveUIDocument.Document;            
 
             // run door swing reversal
             cmdReverseDoorSwings com_1 = new cmdReverseDoorSwings();
