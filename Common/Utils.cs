@@ -473,7 +473,7 @@ namespace LifestyleDesign_r24.Common
             ElementBinding curBinding = curDoc.Application.Create.NewInstanceBinding(myCatSet);
 
             //do something
-            paramAdded = curDoc.ParameterBindings.Insert(curDef, curBinding, BuiltInParameterGroup.PG_IDENTITY_DATA);
+            //paramAdded = curDoc.ParameterBindings.Insert(curDef, curBinding, BuiltInParameterGroup.PG_IDENTITY_DATA);
 
             return paramAdded;
         }

@@ -10,10 +10,10 @@
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>
   </AddIn>
   <AddIn Type="Command">
-    <Text>LifestyleDesign_r24 - Flip Plan</Text>
+    <Text>LifestyleDesign_r24 - Update VTs</Text>
     <Description>Some description</Description>
     <Assembly>LifestyleDesign_r24\LifestyleDesign_r24.dll</Assembly>
-    <FullClassName>LifestyleDesign_r24.cmdFlipPlan</FullClassName>
+    <FullClassName>LifestyleDesign_r24.cmdUpdateVTs</FullClassName>
     <ClientId>cb1a3772-4595-4529-9ae2-4c0f56e35916</ClientId>
     <VendorId>com.YOUR COMPANY NAME</VendorId>
     <VendorDescription>YOUR COMPANY NAME, YOUR COMPANY URL</VendorDescription>

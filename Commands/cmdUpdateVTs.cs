@@ -35,7 +35,7 @@ namespace LifestyleDesign_r24
 
                     // check if first two charactera is number
                     // string firstTwo = curName.Substring(0, 1);
-                    bool isNumber = !String.IsNullOrEmpty(curName) && !Char.IsNumber(curName[0]);
+                    bool isNumber = !String.IsNullOrEmpty(curName) && Char.IsNumber(curName[0]);
 
 
                     // if yes, delete it
@@ -50,6 +50,8 @@ namespace LifestyleDesign_r24
                         }
                     }
                 }
+
+                t.Commit();
             }
 
             // transfer the current view templates from the template file
