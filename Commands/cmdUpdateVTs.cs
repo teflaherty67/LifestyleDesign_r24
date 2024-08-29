@@ -20,6 +20,9 @@ namespace LifestyleDesign_r24
             // get all the view templates in the project
             List<View> curVTs = Utils.GetAllViewTemplates(curDoc);
 
+            // set the path to the view template file
+            string templateDoc = "S:\\Shared Folders\\Lifestyle USA Design\\Library 2025\\Template\\View Templates.rvt";
+
             using (Transaction t = new Transaction(curDoc))
             {
                 t.Start("Update View Templates");
@@ -49,6 +52,23 @@ namespace LifestyleDesign_r24
                         {
                         }
                     }
+                }
+
+                // transfer view templates from template file
+                Document sourceDoc = uidoc.Application.OpenAndActivateDocument(templateDoc).Document;
+                Document targetDoc = uidoc.Document;
+
+                // get the view templates from the source document
+                List<View> listViewTemplates = new FilteredElementCollector(sourceDoc)
+                    .OfClass(typeof(View))
+                    .Cast<View>()
+                    .Where(v => v.IsTemplate)
+                    .ToList();
+
+                foreach (View sourceTemplate in listViewTemplates)
+                {
+                    // duplicate the view template in the target document
+                    ElementId newTemplateID = Utils.DuplcateViewTemplate(sourceTemplate, targetDoc);
                 }
 
                 t.Commit();

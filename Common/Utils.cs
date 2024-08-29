@@ -1331,6 +1331,32 @@ namespace LifestyleDesign_r24.Common
             return null;
         }
 
+        internal static ElementId DuplcateViewTemplate(View sourceTemplate, Document targetDoc)
+        {
+            // Create a new view template in the target document with similar parameters
+            ViewFamilyType viewFamilyType = targetDoc.GetElement(sourceTemplate.GetTypeId()) as ViewFamilyType;
+            View newTemplate = View.Create(targetDoc, viewFamilyType.Id);
+
+            // Copy properties from sourceTemplate to newTemplate
+            newTemplate.Name = sourceTemplate.Name;
+            newTemplate.Duplicate(ViewDuplicateOption.Duplicate); // Duplicate options as needed
+
+            // Copy parameters
+            foreach (Parameter param in sourceTemplate.Parameters)
+            {
+                if (!param.IsReadOnly && param.HasValue)
+                {
+                    Parameter targetParam = newTemplate.get_Parameter(param.Definition);
+                    if (targetParam != null)
+                    {
+                        targetParam.Set(param.AsElementId()); // Assuming element parameters, handle other types accordingly
+                    }
+                }
+            }
+
+            return newTemplate.Id;
+        }
+
         #endregion
 
         internal static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
@@ -1348,6 +1374,52 @@ namespace LifestyleDesign_r24.Common
                 }
             }
             return null;
-        }
+        }       
     }
 }
+
+//private void DuplicateViewTemplate(View sourceTemplate, Document targetDoc)
+//{
+//    // Duplicate the view template in the target document
+//    ElementId newTemplateId = targetDoc.DuplicateElement(sourceTemplate, ViewDuplicateOption.Duplicate);
+
+//    // Retrieve the duplicated template
+//    View newTemplate = targetDoc.GetElement(newTemplateId) as View;
+
+//    // Set the name of the new template to match the source
+//    newTemplate.Name = sourceTemplate.Name;
+
+//    // Optionally, copy additional parameters if needed
+//    CopyParameters(sourceTemplate, newTemplate);
+//}
+
+//private void CopyParameters(View sourceTemplate, View targetTemplate)
+//{
+//    // Copy parameters from the source template to the target template
+//    foreach (Parameter sourceParam in sourceTemplate.Parameters)
+//    {
+//        if (!sourceParam.IsReadOnly && sourceParam.HasValue)
+//        {
+//            Parameter targetParam = targetTemplate.get_Parameter(sourceParam.Definition);
+//            if (targetParam != null)
+//            {
+//                switch (sourceParam.StorageType)
+//                {
+//                    case StorageType.Integer:
+//                        targetParam.Set(sourceParam.AsInteger());
+//                        break;
+//                    case StorageType.Double:
+//                        targetParam.Set(sourceParam.AsDouble());
+//                        break;
+//                    case StorageType.String:
+//                        targetParam.Set(sourceParam.AsString());
+//                        break;
+//                    case StorageType.ElementId:
+//                        targetParam.Set(sourceParam.AsElementId());
+//                        break;
+//                }
+//            }
+//        }
+//    }
+//}
+//}

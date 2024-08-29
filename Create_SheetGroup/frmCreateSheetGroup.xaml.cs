@@ -17,9 +17,9 @@ namespace LifestyleDesign_r24
     /// <summary>
     /// Interaction logic for frmNewElevation.xaml
     /// </summary>
-    public partial class frmNewSheetGroup : Window
+    public partial class frmCreateSheetGroup : Window
     {
-        public frmNewSheetGroup()
+        public frmCreateSheetGroup()
         {
             InitializeComponent();
 
