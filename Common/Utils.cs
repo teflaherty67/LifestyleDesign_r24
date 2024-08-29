@@ -3,6 +3,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Media;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
+
 
 namespace LifestyleDesign_r24.Common
 {
@@ -1331,30 +1333,18 @@ namespace LifestyleDesign_r24.Common
             return null;
         }
 
-        internal static ElementId DuplcateViewTemplate(View sourceTemplate, Document targetDoc)
+        internal static ElementId DuplcateViewTemplate(Document sourceDoc, View sourceTemplate, Document targetDoc)
         {
-            // Create a new view template in the target document with similar parameters
-            ViewFamilyType viewFamilyType = targetDoc.GetElement(sourceTemplate.GetTypeId()) as ViewFamilyType;
-            View newTemplate = View.Create(targetDoc, viewFamilyType.Id);
+            CopyPasteOptions copyPasteOptions = new CopyPasteOptions();
 
-            // Copy properties from sourceTemplate to newTemplate
-            newTemplate.Name = sourceTemplate.Name;
-            newTemplate.Duplicate(ViewDuplicateOption.Duplicate); // Duplicate options as needed
+            ElementId sourceTemplateId = sourceTemplate.Id;
 
-            // Copy parameters
-            foreach (Parameter param in sourceTemplate.Parameters)
-            {
-                if (!param.IsReadOnly && param.HasValue)
-                {
-                    Parameter targetParam = newTemplate.get_Parameter(param.Definition);
-                    if (targetParam != null)
-                    {
-                        targetParam.Set(param.AsElementId()); // Assuming element parameters, handle other types accordingly
-                    }
-                }
-            }
+            List < ElementId> elementIds = new List<ElementId>();
+            elementIds.Add(sourceTemplate.Id);
 
-            return newTemplate.Id;
+            ElementTransformUtils.CopyElements(sourceDoc, elementIds, targetDoc, Autodesk.Revit.DB.Transform.Identity, copyPasteOptions);
+
+            return sourceTemplate.Id;
         }
 
         #endregion
@@ -1374,7 +1364,7 @@ namespace LifestyleDesign_r24.Common
                 }
             }
             return null;
-        }       
+        }        
     }
 }
 
@@ -1421,5 +1411,4 @@ namespace LifestyleDesign_r24.Common
 //            }
 //        }
 //    }
-//}
 //}

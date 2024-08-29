@@ -68,7 +68,7 @@ namespace LifestyleDesign_r24
                 foreach (View sourceTemplate in listViewTemplates)
                 {
                     // duplicate the view template in the target document
-                    ElementId newTemplateID = Utils.DuplcateViewTemplate(sourceTemplate, targetDoc);
+                    ElementId newTemplateID = Utils.DuplcateViewTemplate(sourceDoc, sourceTemplate, targetDoc);
                 }
 
                 t.Commit();
