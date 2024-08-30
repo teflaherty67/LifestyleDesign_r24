@@ -20,14 +20,21 @@ namespace LifestyleDesign_r24
             // get all the view templates in the project
             List<View> curVTs = Utils.GetAllViewTemplates(curDoc);
 
+            // get all the views in the project
+            List<View> nonTemplateViews = Utils.GetAllNonTemplateViews(curDoc);
+
             // set the path to the view template file
             string templateDoc = "S:\\Shared Folders\\Lifestyle USA Design\\Library 2025\\Template\\View Templates.rvt";
 
-            using (Transaction t = new Transaction(curDoc))
-            {
-                t.Start("Update View Templates");
+            // create a variable for the source document & open it
+            Document sourceDoc = uidoc.Application.OpenAndActivateDocument(templateDoc).Document;
 
-                // delete all view templates that start with a letter or a number, except 17
+            // create & start the transaction
+            using (Transaction t = new Transaction(curDoc, "Update View Templates"))
+            {
+                t.Start();
+
+                // delete all view templates that start with a letter or a number
                 foreach (View curVT in curVTs)
                 {
                     // get the name of the view template
@@ -36,10 +43,8 @@ namespace LifestyleDesign_r24
                     // check if first character is letter
                     bool isLetter = !String.IsNullOrEmpty(curName) && Char.IsLetter(curName[0]);
 
-                    // check if first two charactera is number
-                    // string firstTwo = curName.Substring(0, 1);
+                    // check if first two charactera is number                    
                     bool isNumber = !String.IsNullOrEmpty(curName) && Char.IsNumber(curName[0]);
-
 
                     // if yes, delete it
                     if (isLetter == true || isNumber == true)
@@ -54,8 +59,7 @@ namespace LifestyleDesign_r24
                     }
                 }
 
-                // transfer view templates from template file
-                Document sourceDoc = uidoc.Application.OpenAndActivateDocument(templateDoc).Document;
+                // transfer view templates from template file                
                 Document targetDoc = uidoc.Document;
 
                 // get the view templates from the source document
@@ -65,11 +69,72 @@ namespace LifestyleDesign_r24
                     .Where(v => v.IsTemplate)
                     .ToList();
 
+                // transfer the vew templates from the source document
                 foreach (View sourceTemplate in listViewTemplates)
-                {
-                    // duplicate the view template in the target document
-                    ElementId newTemplateID = Utils.DuplcateViewTemplate(sourceDoc, sourceTemplate, targetDoc);
+                {                    
+                    ElementId newTemplateID = Utils.ImportViewTemplates(sourceDoc, sourceTemplate, targetDoc);
                 }
+
+                // create a variable for the new view template
+                View newViewTemp = null;
+
+                // loop through the non-template views
+                foreach (View curView in nonTemplateViews)
+                {
+                    // assign the appropriate view template
+                    if (curView.Name.Contains("Annotation", StringComparison.Ordinal))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByNameContains(curDoc, "Annotations");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+                    else if (curView.Name.Contains("Dimensions", StringComparison.Ordinal))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByNameContains(curDoc, "Dimensions");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+                    else if (curView.Category.Equals("02:Exterior Elevations"))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByCategoryEquals(curDoc, "02:Exterior Elevations");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+                    else if (curView.Name.Contains("Roof", StringComparison.Ordinal))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByNameContains(curDoc, "Roof");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+                    else if (curView.Category.Equals("04:Sections"))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByCategoryEquals(curDoc, "04:Sections");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+                    else if (curView.Category.Equals("05:Interior Elevations"))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByCategoryEquals(curDoc, "05:Interior Elevations");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+                    else if (curView.Name.Contains("Electrical", StringComparison.Ordinal))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByNameContains(curDoc, "Electrical");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+                    else if (curView.Name.Contains("Form", StringComparison.Ordinal))
+                    {
+                        newViewTemp = Utils.GetViewTemplateByNameContains(curDoc, "Form");
+
+                        curView.ViewTemplateId = newViewTemp.Id;
+                    }
+
+
+
+                }
+                
 
                 t.Commit();
             }

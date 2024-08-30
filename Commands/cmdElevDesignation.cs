@@ -55,7 +55,7 @@ namespace LifestyleDesign_r24
                 newFilter = "6";
 
             // get all the views & sheets
-            List<View> viewsList = Utils.GetAllViews(curDoc);
+            List<View> viewsList = Utils.GetAllNonTemplateViews(curDoc);
             List<ViewSheet> sheetsList = Utils.GetAllSheets(curDoc);
 
             // check if all the schedules exist for newElev

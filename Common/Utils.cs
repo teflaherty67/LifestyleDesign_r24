@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 
-
 namespace LifestyleDesign_r24.Common
 {
     internal static class Utils
@@ -1172,7 +1171,7 @@ namespace LifestyleDesign_r24.Common
 
         #region Views
 
-        public static List<View> GetAllViews(Document curDoc)
+        public static List<View> GetAllNonTemplateViews(Document curDoc)
         {
             FilteredElementCollector m_colviews = new FilteredElementCollector(curDoc);
             m_colviews.OfCategory(BuiltInCategory.OST_Views);
@@ -1214,7 +1213,7 @@ namespace LifestyleDesign_r24.Common
 
         internal static List<View> GetAllViewsByCategory(Document curDoc, string catName)
         {
-            List<View> m_colViews = GetAllViews(curDoc);
+            List<View> m_colViews = GetAllNonTemplateViews(curDoc);
 
             List<View> m_returnList = new List<View>();
 
@@ -1283,7 +1282,7 @@ namespace LifestyleDesign_r24.Common
         public static List<View> GetAllViewTemplates(Document curDoc)
         {
             List<View> returnList = new List<View>();
-            List<View> viewList = GetAllViews(curDoc);
+            List<View> viewList = GetAllNonTemplateViews(curDoc);
 
             //loop through views and check if is view template
             foreach (View v in viewList)
@@ -1303,7 +1302,7 @@ namespace LifestyleDesign_r24.Common
             //returns list of view templates
             List<string> viewTempList = new List<string>();
             List<View> viewList = new List<View>();
-            viewList = GetAllViews(m_doc);
+            viewList = GetAllNonTemplateViews(m_doc);
 
             //loop through views and check if is view template
             foreach (View v in viewList)
@@ -1333,7 +1332,7 @@ namespace LifestyleDesign_r24.Common
             return null;
         }
 
-        internal static ElementId DuplcateViewTemplate(Document sourceDoc, View sourceTemplate, Document targetDoc)
+        internal static ElementId ImportViewTemplates(Document sourceDoc, View sourceTemplate, Document targetDoc)
         {
             CopyPasteOptions copyPasteOptions = new CopyPasteOptions();
 
@@ -1364,51 +1363,16 @@ namespace LifestyleDesign_r24.Common
                 }
             }
             return null;
-        }        
+        }
+
+        internal static View GetViewTemplateByNameContains(Document curDoc, string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal static View GetViewTemplateByCategoryEquals(Document curDoc, string v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
-
-//private void DuplicateViewTemplate(View sourceTemplate, Document targetDoc)
-//{
-//    // Duplicate the view template in the target document
-//    ElementId newTemplateId = targetDoc.DuplicateElement(sourceTemplate, ViewDuplicateOption.Duplicate);
-
-//    // Retrieve the duplicated template
-//    View newTemplate = targetDoc.GetElement(newTemplateId) as View;
-
-//    // Set the name of the new template to match the source
-//    newTemplate.Name = sourceTemplate.Name;
-
-//    // Optionally, copy additional parameters if needed
-//    CopyParameters(sourceTemplate, newTemplate);
-//}
-
-//private void CopyParameters(View sourceTemplate, View targetTemplate)
-//{
-//    // Copy parameters from the source template to the target template
-//    foreach (Parameter sourceParam in sourceTemplate.Parameters)
-//    {
-//        if (!sourceParam.IsReadOnly && sourceParam.HasValue)
-//        {
-//            Parameter targetParam = targetTemplate.get_Parameter(sourceParam.Definition);
-//            if (targetParam != null)
-//            {
-//                switch (sourceParam.StorageType)
-//                {
-//                    case StorageType.Integer:
-//                        targetParam.Set(sourceParam.AsInteger());
-//                        break;
-//                    case StorageType.Double:
-//                        targetParam.Set(sourceParam.AsDouble());
-//                        break;
-//                    case StorageType.String:
-//                        targetParam.Set(sourceParam.AsString());
-//                        break;
-//                    case StorageType.ElementId:
-//                        targetParam.Set(sourceParam.AsElementId());
-//                        break;
-//                }
-//            }
-//        }
-//    }
-//}
