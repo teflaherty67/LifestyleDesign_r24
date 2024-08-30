@@ -1365,14 +1365,30 @@ namespace LifestyleDesign_r24.Common
             return null;
         }
 
-        internal static View GetViewTemplateByNameContains(Document curDoc, string v)
+        internal static View GetViewTemplateByNameContains(Document curDoc, string vtName)
         {
-            throw new NotImplementedException();
+            List<View> m_colVTs = Utils.GetAllViewTemplates(curDoc);
+
+            foreach (View curVT in m_colVTs)
+            {
+                if (curVT.Name.Contains(vtName))
+                    return curVT;
+            }
+
+            return null;
         }
 
-        internal static View GetViewTemplateByCategoryEquals(Document curDoc, string v)
+        internal static View GetViewTemplateByCategoryEquals(Document curDoc, string vtName)
         {
-            throw new NotImplementedException();
+            List<View> m_colVTs = Utils.GetAllViewTemplates(curDoc);
+
+            foreach (View curVT in m_colVTs)
+            {
+                if (curVT.Category.Equals(vtName))
+                    return curVT;
+            }
+
+            return null;
         }
     }
 }
