@@ -1346,25 +1346,6 @@ namespace LifestyleDesign_r24.Common
             return sourceTemplate.Id;
         }
 
-        #endregion
-
-        internal static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
-        {
-            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
-            {
-                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
-                if (child != null && child is T)
-                    return (T)child;
-                else
-                {
-                    T foundChild = FindVisualChild<T>(child);
-                    if (foundChild != null)
-                        return foundChild;
-                }
-            }
-            return null;
-        }
-
         internal static View GetViewTemplateByNameContains(Document curDoc, string vtName)
         {
             List<View> m_colVTs = Utils.GetAllViewTemplates(curDoc);
@@ -1390,5 +1371,24 @@ namespace LifestyleDesign_r24.Common
 
             return null;
         }
+
+        #endregion
+
+        internal static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
+        {
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
+            {
+                DependencyObject child = VisualTreeHelper.GetChild(parent, i);
+                if (child != null && child is T)
+                    return (T)child;
+                else
+                {
+                    T foundChild = FindVisualChild<T>(child);
+                    if (foundChild != null)
+                        return foundChild;
+                }
+            }
+            return null;
+        }        
     }
 }
